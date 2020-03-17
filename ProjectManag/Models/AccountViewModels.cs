@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
 namespace ProjectManag.Models
@@ -49,8 +50,8 @@ namespace ProjectManag.Models
     public class LoginViewModel
     {
         [Required]
-        [Display(Name = "Email")]
-        [EmailAddress]
+        [Display(Name = "Username")]
+
         public string Email { get; set; }
 
         [Required]
@@ -65,9 +66,24 @@ namespace ProjectManag.Models
     public class RegisterViewModel
     {
         [Required]
+        [DisplayName("User Type")]
+        public string usertype { get; set; }
+        [Required]
+        [DisplayName("Username")]
+        public string username { get; set; }
+        [DisplayName("Phone Numer")]
+
+        public string PhoneNumber { get; set; }
+        [Required]
+        [DisplayName("country")]
+        public string country { get; set; }
+        [Required]
         [EmailAddress]
         [Display(Name = "Email")]
         public string Email { get; set; }
+        [Display(Name = "UserPhoto ")]
+        public byte UserPhoto { get; set; }
+        public string Skills { get; set; }
 
         [Required]
         [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
@@ -80,6 +96,7 @@ namespace ProjectManag.Models
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
     }
+
 
     public class ResetPasswordViewModel
     {

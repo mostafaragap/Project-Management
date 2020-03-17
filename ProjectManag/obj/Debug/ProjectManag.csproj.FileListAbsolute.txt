@@ -212,5 +212,7 @@ C:\Users\Mo'men\source\repos\Project-Management\ProjectManag\obj\Debug\ProjectMa
 C:\Users\Mo'men\source\repos\Project-Management\ProjectManag\obj\Debug\ProjectManag.csproj.CopyComplete
 C:\Users\Mo'men\source\repos\Project-Management\ProjectManag\obj\Debug\ProjectManag.dll
 C:\Users\Mo'men\source\repos\Project-Management\ProjectManag\obj\Debug\ProjectManag.pdb
-C:\Users\Mo'men\source\repos\Project-Management\ProjectManag\obj\Debug\ProjectManag.Migrations.addRoles.resources
+C:\Users\Mo'men\source\repos\Project-Management\ProjectManag\obj\Debug\ProjectManag.Migrations.Login_info.resources
 C:\Users\Mo'men\source\repos\Project-Management\ProjectManag\obj\Debug\ProjectManag.csproj.GenerateResource.cache
+C:\Users\Mo'men\source\repos\Project-Management\ProjectManag\obj\Debug\ProjectManag.Migrations.Login_info1.resources
+C:\Users\Mo'men\source\repos\Project-Management\ProjectManag\obj\Debug\ProjectManag.Migrations.Register_info.resources

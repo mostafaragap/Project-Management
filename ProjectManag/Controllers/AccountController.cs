@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
@@ -17,9 +18,11 @@ namespace ProjectManag.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
+        private ApplicationDbContext db;
 
         public AccountController()
         {
+            db = new ApplicationDbContext();
         }
 
         public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
@@ -139,6 +142,80 @@ namespace ProjectManag.Controllers
         [AllowAnonymous]
         public ActionResult Register()
         {
+            ViewBag.Usertype = new SelectList(db.Roles.Where(a => !a.Name.Contains("Admin")).ToList(), "Name", "Name");
+            ViewBag.Skills = new SelectList(new[] { "PHP", "C#", "Asp.net", "C++", "Paython", "C", "Java", "Iconic" });
+            ViewBag.Country = new SelectList(new[] { "Afghanistan",
+
+        "Cyprus",
+        "Czech Republic",
+        "Denmark",
+        "Djibouti",
+        "Dominica",
+        "Dominican Republic",
+        "Ecuador",
+        "Egypt",
+        "El Salvador",
+        "Equatorial Guinea",
+        "Eritrea",
+        "Estonia",
+        "Ethiopia",
+        "Falkland Islands (Malvinas)",
+        "Faroe Islands",
+        "Fiji",
+        "Finland",
+        "France",
+        "French Guiana",
+        "French Polynesia",
+        "French Southern Territories",
+        "Gabon",
+        "Gambia",
+        "Georgia",
+        "Germany",
+        "Ghana",
+        "Gibraltar",
+        "Greece",
+        "Greenland",
+        "Grenada",
+        "Guadeloupe",
+        "Guam",
+        "Guatemala",
+        "Guinea",
+        "Guinea-Bissau",
+        "Guyana",
+        "Haiti",
+        "Heard Island and Mcdonald Islands",
+        "Holy See (Vatican City State)",
+        "Honduras",
+        "Hong Kong",
+        "Hungary",
+        "Iceland",
+        "India",
+        "Indonesia",
+        "Iran, Islamic Republic of",
+        "Iraq",
+        "Ireland",
+        "Israel",
+        "Italy",
+        "Jamaica",
+        "Japan",
+        "Jordan",
+        "Kazakhstan",
+        "Kenya",
+        "Kiribati",
+        "Korea, Democratic People's Republic of",
+        "Korea, Republic of",
+        "Kuwait",
+        "Kyrgyzstan",
+        "Lao People's Democratic Republic",
+        "Latvia",
+        "Lebanon",
+        "Lesotho",
+        "Liberia",
+        "Libyan Arab Jamahiriya",
+        "Liechtenstein",
+        "Lithuania",
+        "Luxembourg",
+       });
             return View();
         }
 
@@ -147,28 +224,234 @@ namespace ProjectManag.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Register(RegisterViewModel model)
+        public async Task<ActionResult> Register([Bind(Exclude = "UserPhoto")] RegisterViewModel model)
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                ViewBag.Skills = new SelectList(new[] { "PHP", "C#", "Asp.net", "C++", "Paython", "C", "Java", "Iconic" });
+                ViewBag.Usertype = new SelectList(db.Roles.Where(a => !a.Name.Contains("Admin")).ToList(), "Name", "Name");
+                ViewBag.Country = new SelectList(new[] { "Afghanistan",
+
+        "Cyprus",
+        "Czech Republic",
+        "Denmark",
+        "Djibouti",
+        "Dominica",
+        "Dominican Republic",
+        "Ecuador",
+        "Egypt",
+        "El Salvador",
+        "Equatorial Guinea",
+        "Eritrea",
+        "Egypt",
+        "Ethiopia",
+        "Falkland Islands (Malvinas)",
+        "Faroe Islands",
+        "Fiji",
+        "Finland",
+        "France",
+        "French Guiana",
+        "French Polynesia",
+        "French Southern Territories",
+        "Gabon",
+        "Gambia",
+        "Georgia",
+        "Germany",
+        "Ghana",
+        "Gibraltar",
+        "Greece",
+        "Greenland",
+        "Grenada",
+        "Guadeloupe",
+        "Guam",
+        "Guatemala",
+        "Guinea",
+        "Guinea-Bissau",
+        "Guyana",
+        "Haiti",
+        "Heard Island and Mcdonald Islands",
+        "Holy See (Vatican City State)",
+        "Honduras",
+        "Hong Kong",
+        "Hungary",
+        "Iceland",
+        "India",
+        "Indonesia",
+        "Iran, Islamic Republic of",
+        "Iraq",
+        "Ireland",
+        "Israel",
+        "Italy",
+        "Jamaica",
+        "Japan",
+        "Jordan",
+        "Kazakhstan",
+        "Kenya",
+        "Kiribati",
+        "Korea, Democratic People's Republic of",
+        "Korea, Republic of",
+        "Kuwait",
+        "Kyrgyzstan",
+        "Lao People's Democratic Republic",
+        "Latvia",
+        "Lebanon",
+        "Lesotho",
+        "Liberia",
+        "Libyan Arab Jamahiriya",
+        "Liechtenstein",
+        "Lithuania",
+        "Luxembourg",
+     });
+
+                byte[] imageData = null;
+                if (Request.Files.Count > 0)
+                {
+                    HttpPostedFileBase poImgFile = Request.Files["UserPhoto"];
+
+                    using (var binary = new BinaryReader(poImgFile.InputStream))
+                    {
+                        imageData = binary.ReadBytes(poImgFile.ContentLength);
+                    }
+                }
+
+
+
+                var user = new ApplicationUser { Email = model.Email, UserName = model.username, country = model.country, UserType = model.usertype, EmailConfirmed = true, PhoneNumber = model.PhoneNumber, Skills = model.Skills };
+                user.UserPhoto = imageData;
                 var result = await UserManager.CreateAsync(user, model.Password);
+
+
+
                 if (result.Succeeded)
                 {
-                    await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
-                    
+                    await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+                    await UserManager.AddToRoleAsync(user.Id, model.usertype);
+
                     // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
                     // Send an email with this link
                     // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
                     // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
 
-                    return RedirectToAction("Index", "Home");
+                    /*   if (model.usertype == "Admin")
+                       {
+
+                           return RedirectToAction("Admin", "Home");
+                       }*/
+
+                    /*  else if (model.usertype == "Project Manager")
+                      {
+
+
+                          return RedirectToAction("Index", "projects");
+                      }*/
+
+                    if (model.usertype == "Client")
+                    {
+
+                        return RedirectToAction("customer", "Home");
+
+                    }
+
+                    /*   else if (model.usertype == "Team Leader")
+                       {
+                           TeamLeader TM = new TeamLeader();
+                           TM.TeamLeaderId = user.Id;
+                           db.TeamLeaders.Add(TM);
+                           db.SaveChanges();
+                           return RedirectToAction("TL", "Home");
+                       }*/
+
+                    /*    else if (model.usertype == "Developer")
+                        {
+                            Developers Dev = new Developers();
+                            Dev.developerID = user.Id;
+
+                            db.Developers.Add(Dev);
+
+                            db.SaveChanges();
+                            return RedirectToAction("JD", "Home");
+                        }*/
+
                 }
                 AddErrors(result);
             }
 
             // If we got this far, something failed, redisplay form
+            ViewBag.Skills = new SelectList(new[] { "PHP", "C#", "Asp.net", "C++", "Paython", "C", "Java", "Iconic" });
+            ViewBag.Usertype = new SelectList(db.Roles.Where(a => !a.Name.Contains("Admin")).ToList(), "Name", "Name");
+            ViewBag.Country = new SelectList(new[] { "Afghanistan",
+
+        "Cyprus",
+        "Czech Republic",
+        "Denmark",
+        "Djibouti",
+        "Dominica",
+        "Dominican Republic",
+        "Ecuador",
+        "Egypt",
+        "El Salvador",
+        "Equatorial Guinea",
+        "Eritrea",
+        "Egypt",
+        "Ethiopia",
+        "Falkland Islands (Malvinas)",
+        "Faroe Islands",
+        "Fiji",
+        "Finland",
+        "France",
+        "French Guiana",
+        "French Polynesia",
+        "French Southern Territories",
+        "Gabon",
+        "Gambia",
+        "Georgia",
+        "Germany",
+        "Ghana",
+        "Gibraltar",
+        "Greece",
+        "Greenland",
+        "Grenada",
+        "Guadeloupe",
+        "Guam",
+        "Guatemala",
+        "Guinea",
+        "Guinea-Bissau",
+        "Guyana",
+        "Haiti",
+        "Heard Island and Mcdonald Islands",
+        "Holy See (Vatican City State)",
+        "Honduras",
+        "Hong Kong",
+        "Hungary",
+        "Iceland",
+        "India",
+        "Indonesia",
+        "Iran, Islamic Republic of",
+        "Iraq",
+        "Ireland",
+        "Israel",
+        "Italy",
+        "Jamaica",
+        "Japan",
+        "Jordan",
+        "Kazakhstan",
+        "Kenya",
+        "Kiribati",
+        "Korea, Democratic People's Republic of",
+        "Korea, Republic of",
+        "Kuwait",
+        "Kyrgyzstan",
+        "Lao People's Democratic Republic",
+        "Latvia",
+        "Lebanon",
+        "Lesotho",
+        "Liberia",
+        "Libyan Arab Jamahiriya",
+        "Liechtenstein",
+        "Lithuania",
+        "Luxembourg",
+     });
             return View(model);
         }
 

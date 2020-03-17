@@ -170,12 +170,21 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\RolesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202003171722514_addRoles.cs" />
-    <Compile Include="Migrations\202003171722514_addRoles.Designer.cs">
-      <DependentUpon>202003171722514_addRoles.cs</DependentUpon>
+    <Compile Include="Migrations\202003171800476_Login_info.cs" />
+    <Compile Include="Migrations\202003171800476_Login_info.Designer.cs">
+      <DependentUpon>202003171800476_Login_info.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202003171811151_Login_info1.cs" />
+    <Compile Include="Migrations\202003171811151_Login_info1.Designer.cs">
+      <DependentUpon>202003171811151_Login_info1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202003171817233_Register_info.cs" />
+    <Compile Include="Migrations\202003171817233_Register_info.Designer.cs">
+      <DependentUpon>202003171817233_Register_info.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -301,6 +310,11 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Shared\_MainLayout.cshtml" />
+    <Content Include="Views\Roles\Create.cshtml" />
+    <Content Include="Views\Roles\Delete.cshtml" />
+    <Content Include="Views\Roles\Details.cshtml" />
+    <Content Include="Views\Roles\Edit.cshtml" />
+    <Content Include="Views\Roles\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -319,8 +333,14 @@
     <Content Include="Scripts\jquery-3.4.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202003171722514_addRoles.resx">
-      <DependentUpon>202003171722514_addRoles.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202003171800476_Login_info.resx">
+      <DependentUpon>202003171800476_Login_info.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202003171811151_Login_info1.resx">
+      <DependentUpon>202003171811151_Login_info1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202003171817233_Register_info.resx">
+      <DependentUpon>202003171817233_Register_info.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
