@@ -11,6 +11,7 @@
 .navbar-default {
     background-color: #184d98;
     border-color: #e7e7e7;
+    height: 70px;
 }
 
     .navbar-default .navbar-nav > li > a {
@@ -30,17 +31,14 @@
 }
 
 .myfooter {
-    
-    background-color: cornflowerblue;
+    background-color: white;
     padding-top: 10px;
     font-family: myFont;
-    text-align:justify;
-    
-    
+    text-align: justify;
 }
 
 .subfooter {
-    background-color: #184d98;
+    background-color: #000000;
     color: white;
     padding: 10px;
     text-align: center;
@@ -50,12 +48,11 @@
     color: azure;
 }
 
-.myfooter h3,ul,p {
+.myfooter h3, ul, p {
     margin-bottom: 10px;
-    list-style-type:none;
+    list-style-type: none;
 }
 
 body {
     padding-top: 70px;
-
 }
