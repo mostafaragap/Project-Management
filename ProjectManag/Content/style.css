@@ -8,8 +8,8 @@
     src: url('font/DroidKufi-Regular.ttf')
 }
 
-.navbar-default {
-    background-color: #184d98;
+    .navbar-default {
+    background-color:black;
     border-color: #e7e7e7;
     height: 70px;
 }
@@ -38,7 +38,7 @@
 }
 
 .subfooter {
-    background-color: #000000;
+    background-color:darkgoldenrod;
     color: white;
     padding: 10px;
     text-align: center;

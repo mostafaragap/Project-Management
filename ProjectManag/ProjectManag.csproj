@@ -207,6 +207,7 @@
     <Content Include="Content\font\fontawesome-webfont.svg" />
     <Content Include="Content\font\glyphicons-halflings-regular.svg" />
     <Content Include="Content\font\index.html" />
+    <Content Include="Content\img\big logo.png" />
     <Content Include="Content\img\empire-black-centre-logox2.png" />
     <Content Include="Content\img\la.jpg" />
     <Content Include="Content\ionicons.min.css" />
