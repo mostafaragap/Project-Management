@@ -16,6 +16,12 @@ namespace ProjectManag.Controllers
         {
             return View();
         }
+        public ActionResult Admin()
+        {
+
+            return View();
+
+        }
         public ActionResult customer()
         {
             return View();
@@ -62,7 +68,6 @@ namespace ProjectManag.Controllers
 
             }
         }
-
 
         public ActionResult About()
         {

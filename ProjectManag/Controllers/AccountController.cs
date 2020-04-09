@@ -78,11 +78,38 @@ namespace ProjectManag.Controllers
 
             // This doesn't count login failures towards account lockout
             // To enable password failures to trigger account lockout, change to shouldLockout: true
+            var user = await UserManager.FindAsync(model.Email, model.Password);
             var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
+
+            if (!user.EmailConfirmed)
+            {
+                ModelState.AddModelError("", "Sorry you Are Blocked!.");
+                return View(model);
+            }
             switch (result)
             {
+
                 case SignInStatus.Success:
-                    return RedirectToLocal(returnUrl);
+
+                    var roles = await UserManager.GetRolesAsync(user.Id);
+
+                    if (roles.Contains("Client"))
+                    {
+
+                        return RedirectToAction("Index", "Home");
+                    }
+                    else if (roles.Contains("Admin"))
+                    {
+
+                        return RedirectToAction("Admin", "Home");
+                    }
+
+
+                    else
+                    {
+                        return View(model);
+                    }
+                // return RedirectToLocal(returnUrl);
                 case SignInStatus.LockedOut:
                     return View("Lockout");
                 case SignInStatus.RequiresVerification:
