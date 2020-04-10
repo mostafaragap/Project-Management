@@ -1,0 +1,19 @@
+﻿@using ProjectManag.Models
+@using Microsoft.AspNet.Identity
+@{
+    ApplicationDbContext db = new ApplicationDbContext();
+    if (Request.IsAuthenticated)
+    {
+        var id = User.Identity.GetUserId();
+
+        var App = db.Users.Find(id);
+
+        if (App.UserType == "Admin")
+        {
+            <li>@Html.ActionLink(" Manage Users", "Index", "ApplicationUsers1")</li>
+        }
+
+    }
+
+
+}

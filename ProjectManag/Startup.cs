@@ -28,6 +28,7 @@ namespace ProjectManag
                 user.UserName = "Admin";
                 user.Email = "admin@yahoo.com";
                 user.UserType = "Admin";
+                user.EmailConfirmed = true;
                 var check = usermanager.Create(user, "MOstafa350_");
                 if (check.Succeeded)
                 {

@@ -86,7 +86,8 @@
   background: #2c3b41;
 }
 .skin-blue .sidebar a {
-  color: #b8c7ce;
+    color: olivedrab;
+    font-weight:bold;
 }
 .skin-blue .sidebar a:hover {
   text-decoration: none;

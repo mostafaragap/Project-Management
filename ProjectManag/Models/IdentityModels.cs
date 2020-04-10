@@ -36,5 +36,7 @@ namespace ProjectManag.Models
         }
 
         public System.Data.Entity.DbSet<ProjectManag.Models.RoleViewModel> RoleViewModels { get; set; }
+
+       // public System.Data.Entity.DbSet<ProjectManag.Models.ApplicationUser> ApplicationUsers { get; set; }
     }
 }
