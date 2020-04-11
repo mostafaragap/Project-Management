@@ -774,3 +774,4 @@ C:\Users\Framawy\Downloads\Documents\Project-Management\ProjectManag\obj\Debug\P
 C:\Users\Framawy\Downloads\Documents\Project-Management\ProjectManag\obj\Debug\ProjectManag.csproj.CopyComplete
 C:\Users\Framawy\Downloads\Documents\Project-Management\ProjectManag\obj\Debug\ProjectManag.dll
 C:\Users\Framawy\Downloads\Documents\Project-Management\ProjectManag\obj\Debug\ProjectManag.pdb
+C:\Users\Framawy\Downloads\Documents\Project-Management\ProjectManag\obj\Debug\ProjectManag.Migrations.AddProjectModuele.resources
