@@ -171,6 +171,7 @@
     <Compile Include="Controllers\ApplicationUsers1.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\projectsController.cs" />
     <Compile Include="Controllers\RolesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -601,6 +602,13 @@
     <Content Include="Views\ApplicationUsers1\BlockUser.cshtml" />
     <Content Include="Views\ApplicationUsers1\UnBlockUser.cshtml" />
     <Content Include="Views\Shared\_Users.cshtml" />
+    <Content Include="Views\projects\Create.cshtml" />
+    <Content Include="Views\projects\Delete.cshtml" />
+    <Content Include="Views\projects\Details.cshtml" />
+    <Content Include="Views\projects\Edit.cshtml" />
+    <Content Include="Views\projects\Index.cshtml" />
+    <Content Include="Views\projects\CustomerCreate.cshtml" />
+    <Content Include="Views\projects\CustomerIndex.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

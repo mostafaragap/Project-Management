@@ -96,7 +96,7 @@ namespace ProjectManag.Controllers
                     if (roles.Contains("Client"))
                     {
 
-                        return RedirectToAction("Index", "Home");
+                        return RedirectToAction("CustomerIndex", "projects");
                     }
                     else if (roles.Contains("Admin"))
                     {
@@ -376,7 +376,7 @@ namespace ProjectManag.Controllers
                     if (model.usertype == "Client")
                     {
 
-                        return RedirectToAction("customer", "Home");
+                        return RedirectToAction("CustomerIndex", "projects");
 
                     }
 
