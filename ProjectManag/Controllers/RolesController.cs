@@ -8,7 +8,7 @@ using System.Web.Mvc;
 
 namespace ProjectManag.Controllers
 {
-    /* [Authorize(Roles = "Admin")]*/
+     [Authorize(Roles = "Admin")]
     public class RolesController : Controller
     {
         ApplicationDbContext db = new ApplicationDbContext();

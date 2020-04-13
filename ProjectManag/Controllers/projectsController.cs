@@ -11,6 +11,7 @@ using ProjectManag.Models;
 
 namespace ProjectManag.Controllers
 {
+    [Authorize]
     public class projectsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
@@ -27,11 +28,57 @@ namespace ProjectManag.Controllers
             var User_id = User.Identity.GetUserId();
             return View(db.projects.Where(a => a.customerId == User_id && a.isopen == 1).ToList());
         }
+        public ActionResult DeveloperIndex()
+        {
+
+            return View(db.projects.Where(a => a.isopen == 1).ToList());
+        }
 
         public ActionResult CustomerCreate()
         {
 
             return View();
+        }
+        public ActionResult CustomerDetails(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            project project = db.projects.Find(id);
+            if (project == null)
+            {
+                return HttpNotFound();
+            }
+            Session["id"] = id; //this send project id for next page
+            return View(project);
+        }
+
+        public ActionResult CustomerEdit(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            project project = db.projects.Find(id);
+            if (project == null)
+            {
+                return HttpNotFound();
+            }
+            return View(project);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult CustomerEdit([Bind(Include = "id,title,decsription,NoOfHours,skill_need,due_deta,creation_date,customerId,isopen")] project project)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Entry(project).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("CustomerIndex");
+            }
+            return View(project);
         }
 
         // POST: projects/Create
@@ -51,6 +98,31 @@ namespace ProjectManag.Controllers
 
             return View(project);
         }
+
+        public ActionResult CustomerDelete(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            project project = db.projects.Find(id);
+            if (project == null)
+            {
+                return HttpNotFound();
+            }
+            return View(project);
+        }
+
+        [HttpPost, ActionName("CustomerDelete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult CustomerDeleteConfirmed(int id)
+        {
+            project project = db.projects.Find(id);
+            db.projects.Remove(project);
+            db.SaveChanges();
+            return RedirectToAction("CustomerIndex");
+        }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult CustomerCreate([Bind(Include = "id,title,decsription,NoOfHours,price,skill_need,due_deta,creation_date,customerId,isopen")] project project)

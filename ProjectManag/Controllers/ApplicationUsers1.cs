@@ -14,6 +14,7 @@ using ProjectManag.Models;
 
 namespace ProjectManag.Controllers
 {
+    [Authorize(Roles ="Admin")]
     public class ApplicationUsers1Controller : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();

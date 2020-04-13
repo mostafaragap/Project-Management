@@ -1,29 +1,28 @@
 ﻿@model IEnumerable<ProjectManag.Models.project>
+@using ProjectManag.Models
+@using Microsoft.AspNet.Identity
 
 @{
-    ViewBag.Title = "Index";
-    Layout = "~/Views/Shared/_MainLayout.cshtml";
+    ViewBag.Title = "Projects Post";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+<h2>Project Posts</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.customer.UserType)
+            @Html.DisplayName("Customer Name")
         </th>
+
         <th>
             @Html.DisplayNameFor(model => model.title)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.decsription)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.NoOfHours)
-        </th>
+
         <th>
             @Html.DisplayNameFor(model => model.skill_need)
         </th>
@@ -33,44 +32,80 @@
         <th>
             @Html.DisplayNameFor(model => model.creation_date)
         </th>
+
         <th>
             @Html.DisplayNameFor(model => model.isopen)
         </th>
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.customer.UserType)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.title)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.decsription)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.NoOfHours)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.skill_need)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.due_deta)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.creation_date)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.isopen)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.id })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.customer.UserName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.decsription)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.skill_need)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.due_deta)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.creation_date)
+            </td>
+            @{
+                if (item.isopen == 1)
+                {
+                    <td style="color:red">
+                        Yes
+                    </td>
+                }
+                else
+                {
+                    <td style="color:red">
+                        NO
+                    </td>
+                }
+            }
+            @{
+                if (Request.IsAuthenticated)
+                {
+
+                    ApplicationDbContext db = new ApplicationDbContext();
+                    var userId = User.Identity.GetUserId();
+                    var app = db.Users.Find(userId);
+                    if (app.UserType == "Project Manager")
+                    {
+                        <td>
+                            @Html.ActionLink(" View Details", "Details", new { id = item.id })
+                        </td>
+                    }
+                    else if (app.UserType == "Admin")
+                    {
+                        <td>
+                            @Html.ActionLink(" Delete Post", "Delete", new { id = item.id })
+                        </td>
+
+                    }
+
+
+                }
+
+
+
+            }
+
+
+
+        </tr>
+    }
 
 </table>

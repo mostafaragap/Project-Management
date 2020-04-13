@@ -192,12 +192,30 @@
     <Compile Include="Migrations\202004111842317_AddProjectModuele.Designer.cs">
       <DependentUpon>202004111842317_AddProjectModuele.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202004132002348_test.cs" />
+    <Compile Include="Migrations\202004132002348_test.Designer.cs">
+      <DependentUpon>202004132002348_test.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202004132003044_test2.cs" />
+    <Compile Include="Migrations\202004132003044_test2.Designer.cs">
+      <DependentUpon>202004132003044_test2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202004132010086_test3.cs" />
+    <Compile Include="Migrations\202004132010086_test3.Designer.cs">
+      <DependentUpon>202004132010086_test3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202004132011249_test4.cs" />
+    <Compile Include="Migrations\202004132011249_test4.Designer.cs">
+      <DependentUpon>202004132011249_test4.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\Developers.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\project.cs" />
     <Compile Include="Models\RoleViewModel.cs" />
+    <Compile Include="Models\TeamLeader.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -609,6 +627,14 @@
     <Content Include="Views\projects\Index.cshtml" />
     <Content Include="Views\projects\CustomerCreate.cshtml" />
     <Content Include="Views\projects\CustomerIndex.cshtml" />
+    <Content Include="Views\Shared\_CustomerLayoutPage.cshtml" />
+    <Content Include="Views\projects\CustomerEdit.cshtml" />
+    <Content Include="Views\projects\CustomerDetails.cshtml" />
+    <Content Include="Views\projects\CustomerDelete.cshtml" />
+    <Content Include="Views\Home\JD.cshtml" />
+    <Content Include="Views\Home\TL.cshtml" />
+    <Content Include="Views\Home\PM.cshtml" />
+    <Content Include="Views\projects\DeveloperIndex.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -638,6 +664,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202004111842317_AddProjectModuele.resx">
       <DependentUpon>202004111842317_AddProjectModuele.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004132002348_test.resx">
+      <DependentUpon>202004132002348_test.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004132003044_test2.resx">
+      <DependentUpon>202004132003044_test2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004132010086_test3.resx">
+      <DependentUpon>202004132010086_test3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004132011249_test4.resx">
+      <DependentUpon>202004132011249_test4.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

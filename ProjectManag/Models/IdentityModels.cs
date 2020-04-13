@@ -11,7 +11,10 @@ namespace ProjectManag.Models
     public class ApplicationUser : IdentityUser
     {
         public virtual ICollection<project> project { get; set; }
+        public virtual TeamLeader teamleader { get; set; }
+        public virtual Developers developer { get; set; }
         public string UserType { get; set; }
+        
         public byte[] UserPhoto { get; set; }
 
         public string Skills { get; set; }

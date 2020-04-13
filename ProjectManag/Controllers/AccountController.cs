@@ -68,57 +68,89 @@ namespace ProjectManag.Controllers
         // POST: /Account/Login
         [HttpPost]
         [AllowAnonymous]
-        [ValidateAntiForgeryToken]
+        /*[ValidateAntiForgeryToken]*/
         public async Task<ActionResult> Login(LoginViewModel model, string returnUrl)
         {
+            var user = await UserManager.FindAsync(model.Email, model.Password);
             if (!ModelState.IsValid)
             {
                 return View(model);
             }
+            else {
+                var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
+
+
+                switch (result)
+                {
+
+
+                    case SignInStatus.Success:
+                        var roles = await UserManager.GetRolesAsync(user.Id);
+                       
+
+
+                      if (roles.Contains("Client"))
+                        {
+                            var usr = db.Users.Find(user.Id); 
+                            if(!usr.EmailConfirmed)
+                            {
+                                ModelState.AddModelError("", "Sorry you Are Blocked!.");
+                                return View(model);
+
+                            }
+                            else if (usr == null)
+                            {
+
+                                ModelState.AddModelError("", "Invalid login attempt.");
+                                return View(model);
+                            }
+                            else
+                            {
+                                return RedirectToAction("CustomerIndex", "projects");
+                            }
+                            
+                        }
+                        else if (roles.Contains("Admin"))
+                        {
+
+                            return RedirectToAction("Admin", "Home");
+                        }
+                        else if (roles.Contains("Project Manager"))
+                        {
+
+                            return RedirectToAction("Index", "projects");
+                        }
+                        else if (roles.Contains("Developer"))
+                        {
+                            return RedirectToAction("DeveloperIndex", "projects");
+                        }
+                        else if (roles.Contains("Team Leader"))
+                        {
+
+                            return RedirectToAction("Index", "projects");
+                        }
+
+                        else
+                        {
+                            return View(model);
+                        }
+                    // return RedirectToLocal(returnUrl);
+                    
+                    case SignInStatus.RequiresVerification:
+                        return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
+                    case SignInStatus.LockedOut:
+                    default:
+                        ModelState.AddModelError("", "Invalid login attempt.");
+                        return View(model);
+                }
+            }
 
             // This doesn't count login failures towards account lockout
             // To enable password failures to trigger account lockout, change to shouldLockout: true
-            var user = await UserManager.FindAsync(model.Email, model.Password);
-            var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
+            
+           
+           
 
-            if (!user.EmailConfirmed)
-            {
-                ModelState.AddModelError("", "Sorry you Are Blocked!.");
-                return View(model);
-            }
-            switch (result)
-            {
-
-                case SignInStatus.Success:
-
-                    var roles = await UserManager.GetRolesAsync(user.Id);
-
-                    if (roles.Contains("Client"))
-                    {
-
-                        return RedirectToAction("CustomerIndex", "projects");
-                    }
-                    else if (roles.Contains("Admin"))
-                    {
-
-                        return RedirectToAction("Admin", "Home");
-                    }
-
-
-                    else
-                    {
-                        return View(model);
-                    }
-                // return RedirectToLocal(returnUrl);
-                case SignInStatus.LockedOut:
-                    return View("Lockout");
-                case SignInStatus.RequiresVerification:
-                    return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
-                case SignInStatus.Failure:
-                default:
-                    ModelState.AddModelError("", "Invalid login attempt.");
-                    return View(model);
-            }
         }
 
         //
@@ -360,18 +392,18 @@ namespace ProjectManag.Controllers
                     // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
 
-                    /*   if (model.usertype == "Admin")
+                      if (model.usertype == "Admin")
                        {
 
                            return RedirectToAction("Admin", "Home");
-                       }*/
+                       }
 
-                    /*  else if (model.usertype == "Project Manager")
+                     else if (model.usertype == "Project Manager")
                       {
 
 
                           return RedirectToAction("Index", "projects");
-                      }*/
+                      }
 
                     if (model.usertype == "Client")
                     {
@@ -380,25 +412,25 @@ namespace ProjectManag.Controllers
 
                     }
 
-                    /*   else if (model.usertype == "Team Leader")
+                      else if (model.usertype == "Team Leader")
                        {
                            TeamLeader TM = new TeamLeader();
                            TM.TeamLeaderId = user.Id;
-                           db.TeamLeaders.Add(TM);
+                         //  db.TeamLeaders.Add(TM);
                            db.SaveChanges();
                            return RedirectToAction("TL", "Home");
-                       }*/
+                       }
 
-                    /*    else if (model.usertype == "Developer")
+                        else if (model.usertype == "Developer")
                         {
                             Developers Dev = new Developers();
                             Dev.developerID = user.Id;
-
-                            db.Developers.Add(Dev);
+                        
+                         //  db.Developers.Add(Dev);
 
                             db.SaveChanges();
                             return RedirectToAction("JD", "Home");
-                        }*/
+                        }
 
                 }
                 AddErrors(result);

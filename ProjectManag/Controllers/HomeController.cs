@@ -10,12 +10,14 @@ using System.Web.Mvc;
 
 namespace ProjectManag.Controllers
 {
+
     public class HomeController : Controller
     {
         public ActionResult Index()
         {
             return View();
         }
+        [Authorize(Roles ="Admin")]
         public ActionResult Admin()
         {
 
@@ -26,6 +28,15 @@ namespace ProjectManag.Controllers
         {
             return View();
 
+        }
+
+        
+        public ActionResult PM()
+        {
+
+
+
+            return View();
         }
         public FileContentResult UserPhotos()
         {
@@ -67,6 +78,19 @@ namespace ProjectManag.Controllers
                 return File(imageData, "image/png");
 
             }
+        }
+        public ActionResult TL()
+        {
+
+            return View();
+
+        }
+        [Authorize]
+        public ActionResult JD()
+        {
+
+            return View();
+
         }
 
         public ActionResult About()

@@ -1,0 +1,73 @@
+﻿
+@model ProjectManag.Models.project
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_CustomerLayoutPage.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>project</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.title)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.title)
+        </dd>
+        </br>
+        <dt>
+            @Html.DisplayNameFor(model => model.decsription)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.decsription)
+        </dd>
+        </br>
+        <dt>
+            @Html.DisplayNameFor(model => model.NoOfHours)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.decsription)
+        </dd>
+
+        </br>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.skill_need)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.skill_need)
+        </dd>
+        </br>
+        <dt>
+            @Html.DisplayNameFor(model => model.due_deta)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.due_deta)
+        </dd>
+        </br>
+        <dt>
+            @Html.DisplayNameFor(model => model.creation_date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.creation_date)
+        </dd>
+
+        </br>
+
+    </dl>
+</div>
+<p>
+   
+    @Html.ActionLink("Edit", "CustomerEdit", new { id = Model.id }) |
+    @Html.ActionLink("Back to List", "CustomerIndex")
+</p>

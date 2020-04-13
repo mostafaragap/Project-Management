@@ -5,8 +5,9 @@
 
 @{
     ViewBag.Title = " My Not Assigned Projects";
-    Layout = "~/Views/Shared/_MainLayout.cshtml";
+    Layout = "~/Views/Shared/_CustomerLayoutPage.cshtml";
 }
+
 @{
     var UserId = User.Identity.GetUserId();
     ApplicationDbContext db = new ApplicationDbContext();

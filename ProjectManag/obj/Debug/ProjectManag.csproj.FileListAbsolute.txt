@@ -766,7 +766,6 @@ C:\Users\Framawy\Downloads\Documents\Project-Management\ProjectManag\bin\Microso
 C:\Users\Framawy\Downloads\Documents\Project-Management\ProjectManag\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
 C:\Users\Framawy\Downloads\Documents\Project-Management\ProjectManag\bin\Microsoft.Owin.Security.OAuth.xml
 C:\Users\Framawy\Downloads\Documents\Project-Management\ProjectManag\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
-C:\Users\Framawy\Downloads\Documents\Project-Management\ProjectManag\obj\Debug\ProjectManag.csprojAssemblyReference.cache
 C:\Users\Framawy\Downloads\Documents\Project-Management\ProjectManag\obj\Debug\ProjectManag.Migrations.Login_info.resources
 C:\Users\Framawy\Downloads\Documents\Project-Management\ProjectManag\obj\Debug\ProjectManag.Migrations.Login_info1.resources
 C:\Users\Framawy\Downloads\Documents\Project-Management\ProjectManag\obj\Debug\ProjectManag.Migrations.Register_info.resources
@@ -776,3 +775,7 @@ C:\Users\Framawy\Downloads\Documents\Project-Management\ProjectManag\obj\Debug\P
 C:\Users\Framawy\Downloads\Documents\Project-Management\ProjectManag\obj\Debug\ProjectManag.pdb
 C:\Users\Framawy\Downloads\Documents\Project-Management\ProjectManag\obj\Debug\ProjectManag.Migrations.AddProjectModuele.resources
 C:\Users\Mo'men\source\repos\Project-Management\ProjectManag\obj\Debug\ProjectManag.Migrations.AddProjectModuele.resources
+C:\Users\Framawy\Downloads\Documents\Project-Management\ProjectManag\obj\Debug\ProjectManag.Migrations.test.resources
+C:\Users\Framawy\Downloads\Documents\Project-Management\ProjectManag\obj\Debug\ProjectManag.Migrations.test2.resources
+C:\Users\Framawy\Downloads\Documents\Project-Management\ProjectManag\obj\Debug\ProjectManag.Migrations.test3.resources
+C:\Users\Framawy\Downloads\Documents\Project-Management\ProjectManag\obj\Debug\ProjectManag.Migrations.test4.resources
