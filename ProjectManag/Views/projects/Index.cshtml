@@ -34,7 +34,7 @@
         </th>
 
         <th>
-            @Html.DisplayNameFor(model => model.isopen)
+            @Html.DisplayName("Statues")
         </th>
         <th></th>
     </tr>
@@ -65,13 +65,13 @@
                 if (item.isopen == 1)
                 {
                     <td style="color:red">
-                        Yes
+                        Open
                     </td>
                 }
                 else
                 {
                     <td style="color:red">
-                        NO
+                        Reserved
                     </td>
                 }
             }

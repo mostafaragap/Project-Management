@@ -107,7 +107,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>AdminLTE 2 | Starter</title>
+    <title>Home Page</title>
     <style>
         .section.main-sidebar {
             right: 0:
@@ -196,9 +196,9 @@ desired effect
                         var user = db.Users.Find(UserId);
                         if (user.UserType == "Client")
                         {
-                            <p>
+                            
                                 @Html.ActionLink("Create New Project", "CustomerCreate")
-                            </p>
+                            
                         }
                     }
                 </li>
@@ -216,9 +216,10 @@ desired effect
                             @Html.AntiForgeryToken()
 
 
-                            <a href="javascript:document.getElementById('logoutForm').submit()">Log Off</a>
+                    <button style="width:150px; margin-right:40px;background-color:azure;height:40px;border-radius:40%;"><a href="javascript:document.getElementById('logoutForm').submit()">Log Off</a>  </button> 
 
                         }
+                        
                     }
 
 
