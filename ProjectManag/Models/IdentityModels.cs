@@ -43,7 +43,13 @@ namespace ProjectManag.Models
         public System.Data.Entity.DbSet<ProjectManag.Models.RoleViewModel> RoleViewModels { get; set; }
 
         public System.Data.Entity.DbSet<ProjectManag.Models.project> projects { get; set; }
+        public System.Data.Entity.DbSet<ProjectManag.Models.AssignJob> AssignJobs { get; set; }
 
-      
+        public System.Data.Entity.DbSet<ProjectManag.Models.TeamLeader> TeamLeaders { get; set; }
+
+        public System.Data.Entity.DbSet<ProjectManag.Models.Developers> Developers { get; set; }
+        public System.Data.Entity.DbSet<ProjectManag.Models.Team> Teams { get; set; }
+
+
     }
 }

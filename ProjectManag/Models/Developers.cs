@@ -13,5 +13,6 @@ namespace ProjectManag.Models
         public string developerID { get; set; }
 
         public virtual ApplicationUser ApplicationUser { get; set; }
+        public virtual Team team { get; set; }
     }
 }

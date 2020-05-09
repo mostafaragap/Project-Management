@@ -243,5 +243,50 @@ namespace ProjectManag.Controllers
             }
             base.Dispose(disposing);
         }
+
+        ////////////////////////////////////////////////
+        ///
+        [Authorize]
+        public ActionResult ApproveProject()
+        {
+            return View();
+
+        }
+
+        [HttpPost]
+        public ActionResult ApproveProject(string Message, double Price)
+        {
+            var UserId = User.Identity.GetUserId();
+            var projectId = (int)Session["id"];
+            
+            var check = db.AssignJobs.Where(a => a.projectId == projectId && a.UserId == UserId).ToList();
+            if (check.Count < 1)
+            {
+
+                var projectA = new AssignJob();
+
+                projectA.UserId = UserId;
+                projectA.projectId = projectId;
+
+                projectA.Message = Message;
+                projectA.Price = Price;
+                projectA.State = "Pending";
+                projectA.Customer_Notes = "Waiting for customer Agree";
+
+                db.AssignJobs.Add(projectA);
+                db.SaveChanges();
+                ViewBag.result = "Apply";
+            }
+            else
+            {
+
+                ViewBag.result = "you  allready applied to this project";
+            }
+
+            return View();
+        }
+
+
+
     }
 }
