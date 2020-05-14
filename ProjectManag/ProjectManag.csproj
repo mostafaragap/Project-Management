@@ -637,6 +637,9 @@
     <Content Include="Views\projects\DeveloperIndex.cshtml" />
     <Content Include="Views\Shared\_logout.cshtml" />
     <Content Include="Views\projects\ApproveProject.cshtml" />
+    <Content Include="Views\projects\DeleteApplied.cshtml" />
+    <Content Include="Views\projects\AgreeApplied.cshtml" />
+    <Content Include="Views\projects\AppliedPm.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

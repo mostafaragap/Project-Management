@@ -1,0 +1,50 @@
+﻿
+
+@{
+    ViewBag.Title = "ApproveProject";
+    Layout = "~/Views/Shared/_CustomerLayoutPage.cshtml";
+}
+
+<h2>Aggree on Project</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>AssignJob</h4>
+        <div>
+            @{
+
+                if (ViewBag.result != null)
+                {
+                    <h3>@ViewBag.result</h3>
+                }
+            }
+        </div>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.Label("Customer_Notes", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextArea("Customer_Notes", new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessage("Customer_Notes", "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Confirm" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "CustomerIndex")
+</div>
+
+

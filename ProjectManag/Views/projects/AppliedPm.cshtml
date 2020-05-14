@@ -1,0 +1,82 @@
+﻿
+@model IEnumerable<ProjectManag.Models.AssignJob>
+@{
+    ViewBag.Title = "GetProjects";
+    Layout = "~/Views/Shared/_CustomerLayoutPage.cshtml";
+}
+
+<h2>Users who Applay for this project</h2>
+
+<div style="color:darkred">
+    @{
+
+        if (ViewBag.Result != null)
+        {
+            <h3>@ViewBag.Result</h3>
+        }
+    }
+</div>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.user.UserName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.project.title)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.project.due_deta)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.Message)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Price)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.State)
+        </th>
+
+
+
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.user.UserName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.project.title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.project.due_deta)
+            </td>
+
+
+            <td>
+                @Html.DisplayFor(modelItem => item.Message)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.State)
+            </td>
+
+
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.id }) |
+                @Html.ActionLink("Agree", "AgreeApplied", new { id = item.id }) |
+                @Html.ActionLink("Disagree", "DeleteApplied", new { id = item.id })
+            </td>
+        </tr>
+    }
+
+</table>
+
+

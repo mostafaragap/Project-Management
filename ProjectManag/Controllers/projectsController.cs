@@ -285,6 +285,71 @@ namespace ProjectManag.Controllers
 
             return View();
         }
+        // return PM applys for this job
+        public ActionResult AppliedPm()
+        {
+            var id = (int)Session["id"];
+            var pro = db.AssignJobs.Where(a => a.projectId == id).ToList();
+
+            if (pro.Count == 0)
+            {
+                ViewBag.Result = "There is no one applay this project";
+
+            }
+
+
+
+            return View(pro);
+
+
+        }
+        public ActionResult AgreeApplied()
+        {
+
+            return View();
+        }
+
+
+        [HttpPost]
+        public ActionResult AgreeApplied(int id, string Customer_Notes)
+        {
+            {
+                var pro = db.AssignJobs.Find(id);
+                var proId = pro.projectId;
+                pro.State = "Agree";
+                pro.Customer_Notes = Customer_Notes;
+                db.Entry(pro).Property("Customer_Notes").IsModified = true;
+                var project = db.projects.Find(proId);
+                project.isopen = 0;
+                db.Entry(project).Property("isopen").IsModified = true;
+                db.SaveChanges();
+            }
+            return View();
+        }
+
+        public ActionResult DeleteApplied(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            AssignJob project = db.AssignJobs.Find(id);
+            if (project == null)
+            {
+                return HttpNotFound();
+            }
+            return View(project);
+        }
+
+        [HttpPost, ActionName("DeleteApplied")]
+        [ValidateAntiForgeryToken]
+        public ActionResult ConfirmedDelete(int id)
+        {
+            AssignJob project = db.AssignJobs.Find(id);
+            db.AssignJobs.Remove(project);
+            db.SaveChanges();
+            return RedirectToAction("CustomerIndex");
+        }
 
 
 

@@ -781,3 +781,8 @@ C:\Users\Framawy\Downloads\Documents\Project-Management\ProjectManag\obj\Debug\P
 C:\Users\Framawy\Downloads\Documents\Project-Management\ProjectManag\obj\Debug\ProjectManag.Migrations.test4.resources
 C:\Users\Framawy\Downloads\Documents\Project-Management\ProjectManag\obj\Debug\ProjectManag.csprojAssemblyReference.cache
 C:\Users\Framawy\Downloads\Documents\Project-Management\ProjectManag\obj\Debug\ProjectManag.Migrations.add_AssignJob_AND_Team_Models.resources
+C:\Users\Mo'men\source\repos\Project-Management\ProjectManag\obj\Debug\ProjectManag.Migrations.test.resources
+C:\Users\Mo'men\source\repos\Project-Management\ProjectManag\obj\Debug\ProjectManag.Migrations.test2.resources
+C:\Users\Mo'men\source\repos\Project-Management\ProjectManag\obj\Debug\ProjectManag.Migrations.test3.resources
+C:\Users\Mo'men\source\repos\Project-Management\ProjectManag\obj\Debug\ProjectManag.Migrations.test4.resources
+C:\Users\Mo'men\source\repos\Project-Management\ProjectManag\obj\Debug\ProjectManag.Migrations.add_AssignJob_AND_Team_Models.resources

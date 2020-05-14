@@ -1,0 +1,59 @@
+﻿@model ProjectManag.Models.AssignJob
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_CustomerLayoutPage.cshtml";
+}
+
+
+
+<h3>Are you sure you want to Ignore this ?</h3>
+<div>
+    <h4>project</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.user.UserName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.user.UserName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.project.title)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.project.title)
+        </dd>
+
+
+
+
+        <dt>
+            @Html.DisplayNameFor(model => model.project.due_deta)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.project.due_deta)
+        </dd>
+
+
+
+
+
+
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Ignore" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "CustomerIndex")
+        </div>
+    }
+</div>

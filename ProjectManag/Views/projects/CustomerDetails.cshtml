@@ -67,7 +67,7 @@
     </dl>
 </div>
 <p>
-   
+    @Html.ActionLink("View Applied for this project", "AppliedPm", new { id = Model.id }) |
     @Html.ActionLink("Edit", "CustomerEdit", new { id = Model.id }) |
     @Html.ActionLink("Back to List", "CustomerIndex")
 </p>
