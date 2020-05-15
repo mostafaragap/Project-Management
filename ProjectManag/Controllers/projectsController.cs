@@ -351,6 +351,27 @@ namespace ProjectManag.Controllers
             return RedirectToAction("CustomerIndex");
         }
 
+        [Authorize]
+        public ActionResult GetProjects()
+        {
+            var UserId = User.Identity.GetUserId();
+
+            var pro = db.AssignJobs.Where(a => a.UserId == UserId);
+
+
+            return View(pro.ToList());
+        }
+
+        [Authorize]
+        public ActionResult GetTLProjects()
+        {
+            var UserId = User.Identity.GetUserId();
+
+            var pro = db.AssignJobs.Where(a => a.TeamleaderId == UserId);
+
+
+            return View(pro.ToList());
+        }
 
 
     }

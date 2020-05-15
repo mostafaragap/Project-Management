@@ -1,0 +1,129 @@
+﻿@model IEnumerable<ProjectManag.Models.AssignJob>
+@{
+    ViewBag.Title = "GetProjects";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>GetProjects</h2>
+
+<table class="table">
+    <tr>
+
+        <th>
+            @Html.DisplayNameFor(model => model.project.title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Customer_Notes)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.project.due_deta)
+        </th>
+
+        <th>
+            @Html.DisplayName("Comment")
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.State)
+        </th>
+        <th>
+            @Html.DisplayName("TeamLeader Name")
+        </th>
+
+        <th>
+            @Html.DisplayName("View Team Members")
+        </th>
+
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.project.title)
+            </td>
+
+
+            <td>
+                @Html.DisplayFor(modelItem => item.Customer_Notes)
+            </td>
+
+
+
+            <td>
+                @Html.DisplayFor(modelItem => item.project.due_deta)
+            </td>
+
+
+
+            <td>
+                @Html.DisplayFor(modelItem => item.Message)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.State)
+            </td>
+
+
+            @{ if (item.TeamleaderId != null)
+                {
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Teamleader.ApplicationUser.UserName)
+                    </td>
+}
+                else
+                {
+                    <td style="color:red">
+                        Not Added yet
+                    </td>
+                }
+            }
+            @{
+                if (item.State == "Pending")
+                {
+
+                    <td style="color:red">
+                        Waiting for Customer Approve
+                    </td>
+
+                }
+                else if (item.TeamleaderId == null)
+                {
+
+                    <td style="color:blueviolet">
+                        Waiting for add Team Leader
+                    </td>
+                }
+                else
+                {
+                    <td>
+                        @Html.ActionLink("View", "ViewTeam", new { id = item.id })
+                    </td>
+                }
+            }
+
+
+
+
+            <td>
+                @{ if (item.TeamleaderId == null && item.State == "Agree")
+                    {
+                        @Html.ActionLink("ADD TeamLeder", "AddTeamLeader", new { id = item.id }) }
+                    else if (item.TeamleaderId != null && item.State == "Agree")
+                    {
+                        @Html.ActionLink("Deliverd", "Deliverd", new { id = item.id })
+                    }
+                    else
+                    {
+                        @Html.ActionLink("Leave A Project", "Deliverd", new { id = item.id })
+
+                    }
+                }
+
+
+
+            </td>
+        </tr>
+    }
+
+</table>

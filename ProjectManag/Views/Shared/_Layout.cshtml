@@ -78,9 +78,11 @@ desired effect
                         <!-- User Account Menu -->
                         <li>
                             @Html.Partial("_Users")
-                           
+
                         </li>
-                        
+                        <li>@Html.ActionLink(" View Projects", "Index", "projects")</li>
+                        <li>@Html.Partial("_ProjectsTL_PM")</li>
+
                         <!--to do-->
                         <li class="dropdown user user-menu">
                             <!-- Menu Toggle Button -->
@@ -186,16 +188,16 @@ desired effect
 
                     <li class="treeview">
                         <a href="#">
-                            <!-- <i class="fa fa-link"></i> <span>Projects</span>-->
+                            <i class="fa fa-link"></i> <span>Projects</span>
                             <span class="pull-right-container">
                                 <i class="fa fa-angle-left pull-right"></i>
                             </span>
                         </a>
-                        <!-- to do
-        <ul class="treeview-menu">
-
-          </ul>
-        -->
+                        <ul class="treeview-menu">
+                            <li>@Html.ActionLink(" View Projects", "Index", "projects")</li>
+                            <li>@Html.Partial("_ProjectsTL_PM")</li>
+                          
+                        </ul>
                     </li>
                 </ul>
                 <!-- /.sidebar-menu -->

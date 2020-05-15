@@ -1,0 +1,23 @@
+﻿@using Microsoft.AspNet.Identity
+@using ProjectManag.Models
+@if (Request.IsAuthenticated)
+{
+    ApplicationDbContext db = new ApplicationDbContext();
+    var id = User.Identity.GetUserId();
+
+    var App = db.Users.Find(id);
+    if (App.UserType == "Project Manager")
+    {
+
+        @Html.ActionLink("Manage Projects", "GetProjects", "projects", routeValues: null, htmlAttributes: new { title = "My Projects" })
+
+    }
+    else if (App.UserType == "Team Leader")
+    {
+        @Html.ActionLink("Check Requests", "GetTLProjects", "projects", routeValues: null, htmlAttributes: new { title = "My Projects" })
+    }
+
+
+}
+
+

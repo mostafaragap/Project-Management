@@ -640,6 +640,9 @@
     <Content Include="Views\projects\DeleteApplied.cshtml" />
     <Content Include="Views\projects\AgreeApplied.cshtml" />
     <Content Include="Views\projects\AppliedPm.cshtml" />
+    <Content Include="Views\projects\GetProjects.cshtml" />
+    <Content Include="Views\projects\GetTLProjects.cshtml" />
+    <Content Include="Views\Shared\_ProjectsTL_PM.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

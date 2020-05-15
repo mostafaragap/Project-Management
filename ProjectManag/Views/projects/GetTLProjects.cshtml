@@ -1,0 +1,93 @@
+﻿
+@model IEnumerable<ProjectManag.Models.AssignJob>
+@{
+    ViewBag.Title = "GetProjects";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Projects</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.user.UserName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.project.title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.project.decsription)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Customer_Notes)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.project.due_deta)
+        </th>
+
+        <th>
+            @Html.DisplayName("Developers Added")
+        </th>
+
+
+
+
+
+
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                The project Manager : <span style="color:brown ; font-size :20px"> @Html.DisplayFor(modelItem => item.user.UserName) </span>invite you to work with him.
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.project.title)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.project.decsription)
+            </td>
+
+
+            <td>
+                @Html.DisplayFor(modelItem => item.Customer_Notes)
+            </td>
+
+
+
+            <td>
+                @Html.DisplayFor(modelItem => item.project.due_deta)
+            </td>
+
+            <td>
+                @Html.ActionLink("View", "ViewTeam", new { id = item.id })
+            </td>
+
+
+
+
+
+
+
+            <td>
+
+                @Html.ActionLink("Approve And Create Team", "AddDevelopers", new { id = item.id }) |
+                @{
+                    if (item.TLState == 0)
+                    {
+                        @Html.ActionLink("Ignore", "TLIgnore", new { id = item.id })
+                    }
+                }
+
+
+            </td>
+        </tr>
+    }
+
+</table>
+
