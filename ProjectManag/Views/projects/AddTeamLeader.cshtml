@@ -1,0 +1,59 @@
+﻿@model IEnumerable<ProjectManag.Models.TeamLeader>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+
+<table class="table">
+    <tr>
+
+        <th>
+            @Html.DisplayNameFor(model => model.ApplicationUser.UserName)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.ApplicationUser.Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ApplicationUser.country)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ApplicationUser.PhoneNumber)
+        </th>
+
+
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.ApplicationUser.UserName)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.ApplicationUser.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ApplicationUser.country)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ApplicationUser.PhoneNumber)
+            </td>
+
+            <td>
+
+
+                @Html.ActionLink("ADD", "AddTML", new { id = item.TeamLeaderId }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.TeamLeaderId })
+            </td>
+        </tr>
+    }
+
+</table>

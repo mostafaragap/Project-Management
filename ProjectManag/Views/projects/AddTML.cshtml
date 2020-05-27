@@ -1,0 +1,21 @@
+﻿
+@{
+    ViewBag.Title = "AddTML";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>AddTML</h2>
+
+<div>
+    @{
+
+        if (ViewBag.Res != null)
+        {
+            <h3>@ViewBag.Res</h3>
+        }
+    }
+</div>
+
+<div>
+    @Html.ActionLink("Back to List", "GetProjects")
+</div>

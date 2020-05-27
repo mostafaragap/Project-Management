@@ -416,7 +416,7 @@ namespace ProjectManag.Controllers
                        {
                            TeamLeader TM = new TeamLeader();
                            TM.TeamLeaderId = user.Id;
-                         //  db.TeamLeaders.Add(TM);
+                           db.TeamLeaders.Add(TM);
                            db.SaveChanges();
                            return RedirectToAction("TL", "Home");
                        }
@@ -426,7 +426,7 @@ namespace ProjectManag.Controllers
                             Developers Dev = new Developers();
                             Dev.developerID = user.Id;
                         
-                         //  db.Developers.Add(Dev);
+                           db.Developers.Add(Dev);
 
                             db.SaveChanges();
                             return RedirectToAction("JD", "Home");

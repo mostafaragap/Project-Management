@@ -1,0 +1,60 @@
+﻿@model IEnumerable<ProjectManag.Models.AssignJob>
+
+@{
+    ViewBag.Title = "TLOldProjects";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>My Old Projects</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.project.title)
+        </th>
+        <th>
+            @Html.DisplayName("Project Discription")
+        </th>
+
+        <th>
+            @Html.DisplayName("Project Manager")
+        </th>
+
+        <th>
+            @Html.DisplayName("Developers")
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.Price)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.project.title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.project.decsription)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.user.UserName)
+            </td>
+            <td>
+                @Html.ActionLink("View", "ViewTeamRead", new { id = item.id })
+            </td>
+
+
+
+
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+
+        </tr>
+    }
+
+</table>

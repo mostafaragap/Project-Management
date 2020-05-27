@@ -372,6 +372,104 @@ namespace ProjectManag.Controllers
 
             return View(pro.ToList());
         }
+        public ActionResult AddTeamLeader(int id)
+        {
+            AssignJob TM = new AssignJob();
+            TM = db.AssignJobs.Find(id);
+            Session["ASID"] = TM.id;
+
+            return View(db.TeamLeaders.ToList());
+
+
+        }
+
+
+        public ActionResult AddTML(string id)
+        {
+            int AssignId = (int)Session["ASID"];
+            // var AssJob = db.AssignJobs.Find(AssignId);
+            AssignJob AssJob = db.AssignJobs.Find(AssignId);
+            var check = db.AssignJobs.Where(a => a.id == AssignId && a.TeamleaderId == id).ToList();
+            if (check.Count < 1)
+            {
+                AssJob.TeamleaderId = id;
+                db.Entry(AssJob).Property("TeamleaderId").IsModified = true;
+                db.SaveChanges();
+                ViewBag.Res = "TeamLeader Added Succecfully";
+            }
+            else
+            {
+                ViewBag.Res = "TeamLeader Allready Added";
+            }
+
+            return View();
+
+        }
+
+        public ActionResult Deliverd(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            AssignJob project = db.AssignJobs.Find(id);
+            if (project == null)
+            {
+                return HttpNotFound();
+            }
+            return View(project);
+        }
+
+        [HttpPost, ActionName("Deliverd")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeliverdDelete(int id)
+        {
+            AssignJob project = db.AssignJobs.Find(id);
+            db.AssignJobs.Remove(project);
+            db.SaveChanges();
+            return RedirectToAction("GetProjects");
+        }
+
+        public ActionResult TLAprrove()
+        {
+
+
+            return RedirectToAction("GetTLProjects");
+        }
+
+        public ActionResult TLIgnore(int id)
+        {
+            var Ass = db.AssignJobs.Find(id);
+            Ass.TeamleaderId = null;
+            db.Entry(Ass).Property("TeamleaderId").IsModified = true;
+            db.SaveChanges();
+            return RedirectToAction("GetTLProjects");
+        }
+
+        public ActionResult PMOldProjects()
+        {
+            var UserId = User.Identity.GetUserId();
+            var MyProjects = db.AssignJobs.Where(a => a.UserId == UserId && a.project.isopen == 0).ToList();
+            if (MyProjects.Count == 0)
+            {
+                ViewBag.Result = "You don't Have a Projects";
+            }
+
+
+            return View(MyProjects);
+        }
+        public ActionResult TLOldProjects()
+        {
+            var UserId = User.Identity.GetUserId();
+            var MyProjects = db.AssignJobs.Where(a => a.TeamleaderId == UserId && a.project.isopen == 0).ToList();
+            if (MyProjects.Count == 0)
+            {
+                ViewBag.Result = "You don't Have a Projects";
+            }
+
+
+            return View(MyProjects);
+        }
 
 
     }

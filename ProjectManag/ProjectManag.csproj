@@ -643,6 +643,14 @@
     <Content Include="Views\projects\GetProjects.cshtml" />
     <Content Include="Views\projects\GetTLProjects.cshtml" />
     <Content Include="Views\Shared\_ProjectsTL_PM.cshtml" />
+    <Content Include="Views\projects\AddTeamLeader.cshtml" />
+    <Content Include="Views\projects\AddTML.cshtml" />
+    <Content Include="Views\projects\Deliverd.cshtml" />
+    <Content Include="Views\projects\TLAprrove.cshtml" />
+    <Content Include="Views\projects\TLIgnore.cshtml" />
+    <Content Include="Views\projects\PMOldProjects.cshtml" />
+    <Content Include="Views\projects\TLOldProjects.cshtml" />
+    <Content Include="Views\Shared\_TLOldProjects.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

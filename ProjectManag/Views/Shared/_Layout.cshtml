@@ -82,6 +82,7 @@ desired effect
                         </li>
                         <li>@Html.ActionLink(" View Projects", "Index", "projects")</li>
                         <li>@Html.Partial("_ProjectsTL_PM")</li>
+                        <li>@Html.Partial("_TLOldProjects")</li>
 
                         <!--to do-->
                         <li class="dropdown user user-menu">
@@ -89,7 +90,7 @@ desired effect
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                 <!-- The user image in the navbar-->
                                 <img src="@Url.Action("UserPhotos", "Home")" class="user-image" alt="User Image" />
-
+                                
                                 <!-- hidden-xs hides the username on small devices so only the image appears. -->
                                 <span class="hidden-xs">Hello @User.Identity.GetUserName()</span>
                             </a>
@@ -196,7 +197,8 @@ desired effect
                         <ul class="treeview-menu">
                             <li>@Html.ActionLink(" View Projects", "Index", "projects")</li>
                             <li>@Html.Partial("_ProjectsTL_PM")</li>
-                          
+                            <li>@Html.Partial("_TLOldProjects")</li>
+
                         </ul>
                     </li>
                 </ul>
