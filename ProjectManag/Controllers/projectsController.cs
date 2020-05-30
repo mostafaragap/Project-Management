@@ -144,6 +144,18 @@ namespace ProjectManag.Controllers
 
             return View(project);
         }
+        public ActionResult CustomerOldProjects()
+        {
+            var UserId = User.Identity.GetUserId();
+            var MyProjects = db.AssignJobs.Where(a => a.project.customerId == UserId && a.project.isopen == 0).ToList();
+            if (MyProjects.Count == 0)
+            {
+                ViewBag.Result = "You don't Have a Projects";
+            }
+
+
+            return View(MyProjects);
+        }
 
 
         // GET: projects/Details/5
@@ -445,6 +457,96 @@ namespace ProjectManag.Controllers
             db.SaveChanges();
             return RedirectToAction("GetTLProjects");
         }
+        public ActionResult AddDevelopers(int id)
+        {
+            AssignJob Tm = new AssignJob();
+            Team team = new Team();
+            Tm = db.AssignJobs.Find(id);
+            Session["ASID"] = Tm.id;
+
+            return View(db.Developers.ToList());
+
+
+        }
+
+        public ActionResult AddDeveloper(string id)
+        {
+            int AssignId = (int)Session["ASID"];
+            // var AssJob = db.AssignJobs.Find(AssignId);
+            AssignJob AssJob = db.AssignJobs.Find(AssignId);
+            Team team = new Team();
+            var dev = db.Developers.Find(id);
+            var check = db.Teams.Where(a => a.AssignId == AssignId && a.DeveloperId == id).ToList();
+            if (check.Count < 1)
+            {
+                AssJob.TLState = 1;
+                team.DeveloperId = id;
+                team.AssignId = AssJob.id;
+                team.JDSkills = dev.ApplicationUser.Skills;
+                team.TeamLeaderID = AssJob.TeamleaderId;
+                db.Teams.Add(team);
+                db.SaveChanges();
+                ViewBag.Res = "Developer Added Succecfully";
+            }
+            else
+            {
+                ViewBag.Res = "Developer Allready Added privusily";
+            }
+
+            return View();
+
+        }
+
+
+        [Authorize]
+        public ActionResult GetDEVProjects()
+        {
+            var UserId = User.Identity.GetUserId();
+
+            var pro = db.Teams.Where(a => a.DeveloperId == UserId);
+
+
+            return View(pro.ToList());
+        }
+        //get the developers that work in project
+        [Authorize]
+        public ActionResult ViewTeam(int id)
+        {
+            var pro = db.Teams.Where(a => a.AssignId == id).ToList();
+            if (pro.Count == 0)
+            {
+                ViewBag.Res = "Thers is no Members Added";
+            }
+            return View(pro);
+
+        }
+
+
+
+
+        public ActionResult DevDelete(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Team project = db.Teams.Find(id);
+            if (project == null)
+            {
+                return HttpNotFound();
+            }
+            return View(project);
+        }
+
+        [HttpPost, ActionName("DevDelete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult ConfirmedDeleteDev(int id)
+        {
+            Team project = db.Teams.Find(id);
+            db.Teams.Remove(project);
+            db.SaveChanges();
+            return RedirectToAction("GetProjects");
+        }
 
         public ActionResult PMOldProjects()
         {
@@ -469,6 +571,17 @@ namespace ProjectManag.Controllers
 
 
             return View(MyProjects);
+        }
+        [Authorize]
+        public ActionResult ViewTeamRead(int id)
+        {
+            var pro = db.Teams.Where(a => a.AssignId == id).ToList();
+            if (pro.Count == 0)
+            {
+                ViewBag.Res = "Thers is no Members Added";
+            }
+            return View(pro);
+
         }
 
 

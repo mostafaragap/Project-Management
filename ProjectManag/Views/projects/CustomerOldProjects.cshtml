@@ -1,0 +1,98 @@
+﻿@model IEnumerable<ProjectManag.Models.AssignJob>
+
+@{
+    ViewBag.Title = "CustomerOldProjects";
+    Layout = "~/Views/Shared/_CustomerLayoutPage.cshtml";
+}
+
+<h2>CustomerOldProjects</h2>
+<div style="color:darkred">
+    @{
+
+        if (ViewBag.Result != null)
+        {
+            <h3>@ViewBag.Result</h3>
+        }
+    }
+</div>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayName("Project Tiltle")
+        </th>
+        <th>
+            @Html.DisplayName("Creation Date")
+        </th>
+        <th>
+            @Html.DisplayName("Project Manager Name")
+        </th>
+
+        <th>
+            @Html.DisplayName("Team Leader Name")
+        </th>
+
+        <th>
+            @Html.DisplayName("Comments")
+        </th>
+
+
+        <th>
+            @Html.DisplayName("Price")
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.project.title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.project.creation_date)
+            </td>
+
+            @{
+                if (item.UserId != null)
+                {
+                    <td>
+                        @Html.DisplayFor(modelItem => item.user.UserName)
+                    </td>
+                }
+                else
+                {
+                    <td style="color:red">
+                        Waiting for PM Approve
+                    </td>
+                }
+            }
+
+            @{
+                if (item.TeamleaderId != null)
+                {
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Teamleader.ApplicationUser.UserName)
+                    </td>
+                }
+                else
+                {
+                    <td style="color:red">
+                        Not Added yet
+                    </td>
+                }
+            }
+
+
+            <td>
+                @Html.DisplayFor(modelItem => item.Message)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+
+        </tr>
+    }
+
+</table>

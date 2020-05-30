@@ -1,0 +1,25 @@
+﻿
+
+@using Microsoft.AspNet.Identity
+@using ProjectManag.Models
+@if (Request.IsAuthenticated)
+{
+    ApplicationDbContext db = new ApplicationDbContext();
+    var id = User.Identity.GetUserId();
+
+    var App = db.Users.Find(id);
+    if (App.UserType == "Developer")
+    {
+
+        @Html.ActionLink("Myprojects", "GetDEVProjects", "projects", routeValues: null, htmlAttributes: new { title = "My Projects" })
+
+    }
+    else if (App.UserType == "Client")
+    {
+        @Html.ActionLink("My Old projects", "CustomerOldProjects", "projects", routeValues: null, htmlAttributes: new { title = "My Projects" })
+
+    }
+
+
+
+}

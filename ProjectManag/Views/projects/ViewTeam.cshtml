@@ -1,0 +1,50 @@
+﻿@model IEnumerable<ProjectManag.Models.Team>
+
+@{
+    ViewBag.Title = "ViewTeam";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>ViewTeam</h2>
+
+<div>
+    @{
+
+        if (ViewBag.Res != null)
+        {
+            <h3 style="color:darkred">@ViewBag.Res</h3>
+        }
+    }
+</div>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.DeveloperId)
+        </th>
+        <th>
+            @Html.DisplayName("Skills")
+        </th>
+
+
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.DeveloperId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.JDSkills)
+            </td>
+
+            <td>
+
+
+                @Html.ActionLink("Delete", "DevDelete", new { id = item.id })
+            </td>
+        </tr>
+    }
+
+</table>

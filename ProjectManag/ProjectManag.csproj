@@ -651,6 +651,16 @@
     <Content Include="Views\projects\PMOldProjects.cshtml" />
     <Content Include="Views\projects\TLOldProjects.cshtml" />
     <Content Include="Views\Shared\_TLOldProjects.cshtml" />
+    <Content Include="Views\projects\ViewTeamRead.cshtml" />
+    <Content Include="Views\projects\ViewTeam.cshtml" />
+    <Content Include="Views\projects\GetDEVProjects.cshtml" />
+    <Content Include="Views\projects\DevDelete.cshtml" />
+    <Content Include="Views\projects\AddDevelopers.cshtml" />
+    <Content Include="Views\projects\AddDeveloper.cshtml" />
+    <Content Include="Views\projects\CustomerOldProjects.cshtml" />
+    <Content Include="Views\Shared\_JDProjects.cshtml" />
+    <Content Include="Views\Shared\_customernotAssign.cshtml" />
+    <Content Include="Views\Shared\_MyProject.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

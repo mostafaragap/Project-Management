@@ -1,0 +1,54 @@
+﻿@model IEnumerable<ProjectManag.Models.Team>
+
+@{
+    ViewBag.Title = "GetDEVProjects";
+    Layout = "~/Views/Shared/_CustomerLayoutPage.cshtml";
+}
+
+<h2>My Projects</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayName("Team Leader Name")
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Assign.project.title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Assign.project.decsription)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Assign.project.due_deta)
+        </th>
+        <th>
+            @Html.DisplayName("Project Manager")
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                The Team Leader : <span style="color:brown ; font-size :20px"> @Html.DisplayFor(modelItem => item.Assign.Teamleader.ApplicationUser.UserName) </span>Add you to work with him.
+                @Html.DisplayFor(modelItem => item.Assign.Teamleader.ApplicationUser.UserName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Assign.project.title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Assign.project.decsription)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Assign.project.due_deta)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Assign.user.UserName)
+            </td>
+
+        </tr>
+    }
+
+</table>
